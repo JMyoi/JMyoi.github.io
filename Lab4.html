@@ -11,15 +11,16 @@
         ItemRequested = window.prompt("Enter the Item you would like to buy:");
         let valid = true;
         while(valid){
-            ItemAmount = window.prompt("Enter the amount (1-99)");
-            if(ItemAmount < 1 || ItemAmount >99){
-                valid = true;
-            }
-            else{
-                valid = false;
-                alert("Please enter a valid amount between 1 and 99");
-            }
+            let itemAmount = window.prompt("Enter the amount (1-99)");
+            itemAmount = parseInt(itemAmount, 10); // Convert string to integer
+
+        if(itemAmount < 1 || itemAmount > 99){
+            alert("Please enter a valid amount between 1 and 99");
+            valid = true;}
+        else{
+            valid = false; // Break the loop if the input is valid
         }
+}
 
         let year = Date.getFullYear();
         let month = Date.getMonth() + 1;
