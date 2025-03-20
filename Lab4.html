@@ -10,8 +10,9 @@
 		name = window.prompt("Please Enter Your name");
         ItemRequested = window.prompt("Enter the Item you would like to buy:");
         let valid = true;
+        let itemAmount;
         while(valid){
-            let itemAmount = window.prompt("Enter the amount (1-99)");
+            itemAmount = window.prompt("Enter the amount (1-99)");
             itemAmount = parseInt(itemAmount, 10); // Convert string to integer
 
         if(itemAmount < 1 || itemAmount > 99){
@@ -22,14 +23,15 @@
         }
 }
 
-        let year = Date.getFullYear();
-        let month = Date.getMonth() + 1;
-        let day = Date.getDate();
+        let year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let day = now.getDate();
         //dd-mm--yyyy
         let arrivalDate = "";
 
         //case 1-11 if day + 7 exceeds number of days in the respective month, adjust accordingly
         //case where month is 12 and day + 7 exceeds number of days in month, adjust accordingly
+        console.log("going to date if statements")
         if(month == 1){
             if((day + 7) >31){
                 newMonth = month + 1;
@@ -165,7 +167,7 @@
             }
         }
         
-
+        console.log("finished date if staementsms");
 		if (hour < 12) {
 			document.write("<h1> Good Morning ")
 		} else if (hour < 18) {
@@ -173,7 +175,7 @@
 		} else {
 			document.write("<h1> Good Evening ")
 		}
-		document.writeln(name + ", Thank You for ordering " + ItemAmount + " "+ ItemRequested + "Arrival Date (DD-MM-YYYY): "+arrivalDate);
+		document.writeln(name + ", Thank You for ordering " + itemAmount + " "+ ItemRequested + " Arrival Date (DD-MM-YYYY): "+arrivalDate);
 
 	</script>
 </head>
