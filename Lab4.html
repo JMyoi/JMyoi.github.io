@@ -1,0 +1,37 @@
+<html>
+<head>
+	<script>
+        alert("Welcome to the store, Here you can buy anything you can imagine!");
+
+		var name;
+		now = new Date();
+		hour = now.getHours();
+
+		name = window.prompt("Please Enter Your name", "Briano");
+        let valid = true;
+        while(valid){
+            ItemRequested = window.prompt("Enter the Item you would like to buy:");
+            ItemAmount = window.prompt("Enter the amount (1-99)");
+            if(ItemAmount < 1 || ItemAmount >99){
+                valid = false;
+            }
+        }
+
+
+		if (hour < 12) {
+			document.write("<h1> Good Morning ")
+		} else if (hour < 18) {
+			document.write("<h1> Good Afternoon ")
+		} else {
+			document.write("<h1> Good Evening ")
+		}
+		document.writeln(name + ", Thank You for ordering " + ItemAmount + " "+ ItemRequested)
+
+	</script>
+</head>
+
+<body>
+	<h1></h1>
+</body>
+
+</html>
