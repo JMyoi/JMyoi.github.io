@@ -8,12 +8,7 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Lab5</title>
-    <script>
-        function submitForm(){
-
-        }
-
-    </script>
+  
 </head>
 <body>
     <div class="jumbotron text-center">
@@ -28,31 +23,80 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="Fname">First Name:</label>
-                    <input type="text" class="form-control" id="Fname" placeholder="John">
+                    <input type="text" class="form-control" id="Fname" placeholder="John" required>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="Lname">Last Name:</label>
-                    <input type="text" class="form-control" id="Lname" placeholder="Doe">
+                    <input type="text" class="form-control" id="Lname" placeholder="Doe" required>
                 </div>
 
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="DOB">Date of Birth:</label>
-                <input type="date" class="form-control" id="DOB" >
+                <input type="date" class="form-control" id="DOB" required>
               </div>
               <div class="form-group col-md-6">
-                <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <label for="inputPassword">Password (Must contain an ! and ?)</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password (Must contain an ! and ?)" required>
               </div>
             </div>
             
-            <button onClick = "submitForm()" class="btn btn-primary">Sign in</button>
+            <button type="button" onClick = "submitForm()" class="btn btn-primary"> Sign in</button>
           </form>
+          <br>
+          <hr>
+          <div>
+            <p class = "text-center" d = "firstName">.</p>
+            <p class = "text-center" id = "lastName">.</p>
+            <p class = "text-center" id = "Email">.</p>
+            <p class = "text-center" id = "dateOfBirth">.</p>
+            <p class = "text-center" id = "Password">.</p>
+
+          </div>
     </div>
 
-    
+    <script>
+        function submitForm(){
+            var elements = document.getElementById("myForm").elements;
+            var elementArray = Array.from(elements);
+            let firstName = elementArray[0].value;
+            let lastName = elementArray[1].value;
+            let email = elementArray[2].value;
+            let DOB = elementArray[3].value;
+            let password = elementArray[4].value;
+            let containsQuestion = false;
+            let containsExclamation = false;
+
+            let displayFname = document.getElementById("firstname");
+            let displayLname = document.getElementById("lastName");
+            let displayEmail = document.getElementById("Email");
+            let displayDOB = document.getElementById("dateOfBirth");
+            let displayPassword = document.getElementById("Password");
+            
+            for(let i = 0; i<password.length; i++){
+                if(password[i] === "?") containsQuestion = true;
+                if(password[i] === "!") containsExclamation = true;
+            }
+            if(containsQuestion && containsExclamation){
+                console.log("contains")
+                displayFname.textContent = firstName;
+                displayLname.textContent = lastName;
+                displayEmail.textContent = email;
+                displayDOB.textContent = DOB;
+                displayPassword.textContent = password;
+            }
+            else{
+                console.log("!contains");
+                let displayFname = document.getElementById("firstname");
+                displayFname.textContent = "Your Password Does Not contain a '!' and '?' please try again.";
+                displayFname.style.color = "red";
+            }
+
+        }
+
+    </script>
 </body>
 </html>
