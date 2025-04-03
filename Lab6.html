@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onClick = "consumeAPI()"> Consume API</button>
+    <br>
+    <img  id = "image" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTiHZ3hsFBfvQHNGBPQO7lvGkCEB5AzfxdT4ukMRtL96blKqo3pgElXLSS4JqGqeQXOkJIkmACLZdTExfureDtW2g">
+
+
+
+    <script>
+        async function consumeAPI(){
+            const url = 'https://brianobruno.github.io/cats.json';
+            const options = {method:'GET'};
+
+            const response = await fetch(url, options);
+            const result = await response.text();
+            const myObj = JSON.parse(result);
+            console.log(myObj.facts.length);
+
+            //sort object by fact ID using insertion sort
+            for (let i = 1; i < myObj.facts.length; i++) {
+                let current = myObj.facts[i];
+                let j = i - 1;
+
+                while (j >= 0 && myObj.facts[j].factId > current.factId) {
+                    myObj.facts[j + 1] = myObj.facts[j]; // shift right
+                    j--;
+                }
+
+                myObj.facts[j + 1] = current; // insert at correct position
+            }
+            console.log(myObj);
+
+            const displayInfo = document.createElement('div');
+            document.body.appendChild(displayInfo);
+
+            displayInfo.innerHTML = `
+                <table border="1">
+                    <tr>
+                        <th>Fact ID</th>
+                        <th>Fact</th>
+                    </tr>
+                    <tr>
+                        <td class = "factID"></td>
+                        <td class = "Fact"> </td>
+                    </tr>
+                    <tr>
+                        <td class = "factID"></td>
+                        <td class = "Fact"></td>
+                    </tr>
+                    <tr>
+                        <td class = "factID"></td>
+                        <td class = "Fact"></td>
+                    </tr>
+                    <tr>
+                        <td class = "factID"></td>
+                        <td class = "Fact"></td>
+                    </tr>
+                    <tr>
+                        <td class = "factID"></td>
+                        <td class = "Fact"></td>
+                    </tr>
+                </table>
+            `;
+            let firstCol = document.getElementsByClassName("factID");
+            let SecondCol = document.getElementsByClassName("Fact");
+            for(let i = 0; i<firstCol.length; i++){
+                firstCol[i].textContent = myObj.facts[i].factId;
+            }
+            for(let i = 0; i<SecondCol.length; i++){
+                SecondCol[i].textContent = myObj.facts[i].text;
+            }
+
+            //replace the image
+            let image = document.getElementById("image");
+            image.setAttribute("src", myObj.catPhoto);
+
+        }
+
+    </script>
+</body>
+</html>

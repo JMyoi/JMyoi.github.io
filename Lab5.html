@@ -48,18 +48,19 @@
           </form>
           <br>
           <hr>
-          <div>
-            <p class = "text-center" d = "firstName">.</p>
+          
+            <p class = "text-center" id = "firstName">.</p>
             <p class = "text-center" id = "lastName">.</p>
             <p class = "text-center" id = "Email">.</p>
             <p class = "text-center" id = "dateOfBirth">.</p>
             <p class = "text-center" id = "Password">.</p>
-
-          </div>
+          
     </div>
 
     <script>
         function submitForm(){
+            const jobDiv = document.createElement('div');
+            jobDiv.className = 'j-desc';
             var elements = document.getElementById("myForm").elements;
             var elementArray = Array.from(elements);
             let firstName = elementArray[0].value;
@@ -69,13 +70,14 @@
             let password = elementArray[4].value;
             let containsQuestion = false;
             let containsExclamation = false;
-
-            let displayFname = document.getElementById("firstname");
-            let displayLname = document.getElementById("lastName");
-            let displayEmail = document.getElementById("Email");
-            let displayDOB = document.getElementById("dateOfBirth");
-            let displayPassword = document.getElementById("Password");
             
+
+            const displayFname = document.getElementById("firstname");
+            const displayLname = document.getElementById("lastName");
+            const displayEmail = document.getElementById("Email");
+            const displayDOB = document.getElementById("dateOfBirth");
+            const displayPassword = document.getElementById("Password");
+
             for(let i = 0; i<password.length; i++){
                 if(password[i] === "?") containsQuestion = true;
                 if(password[i] === "!") containsExclamation = true;
