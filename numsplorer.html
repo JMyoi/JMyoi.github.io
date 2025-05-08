@@ -54,35 +54,38 @@
                
                 <div class="p-5 mb-4 bg-body-secondary rounded-3 border">
                    <div class="d-flex justify-content-center align-items-center py-3 mx-5 px-4">
-                    <button type="button" class="btn btn-light btn-lg mx-2">Trivia</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2">Math</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2">Date</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2">Year</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2">Random</button>
+                    <button type="button" class="btn btn-secondary btn-lg mx-2" id = "triviaBtn" onClick = "handleTrivia()">Trivia</button>
+                    <button type="button" class="btn btn-light btn-lg mx-2" id = "mathBtn" onClick = "handleMath()">Math</button>
+                    <button type="button" class="btn btn-light btn-lg mx-2" id = "dateBtn" onClick = "handleDate()">Date</button>
+                    <button type="button" class="btn btn-light btn-lg mx-2" id = "yearBtn" onClick = "handleYear()">Year</button>
+                    <button type="button" class="btn btn-light btn-lg mx-2" id = "randomBtn" onClick = "handleRandom()">Random</button>
                    </div>
 
                     <!-- form -->
                    <form class = "border border-2 p-3 .visually-hidden px-5 mx-5">
                         <h3 id = "Type" class = "text-center">Trivia</h3>
-                        <div class="mb-3 ">
-                        <label for="Input1" class="form-label">Input</label>
-                        <input type="text" class="form-control" id="Input1" aria-describedby="emailHelp">
+
+                        <div class="mb-3" id = "firstInput">
+                        <label for="Input1" class="form-label" id = "input1Text">Input</label>
+                        <input type="text" class="form-control" id="Input1">
                         </div>
     
-                        <div class="mb-3 visually-hidden">
-                        <label for="Input2" class="form-label ">Month</label>
+                        <div class="mb-3 visually-hidden" id = "secondInput">
+                        <label for="Input2" class="form-label ">Day</label>
                         <input type="text" class="form-control " id="Input2">
                         </div>
-                        <p class = "text-danger fst-italic " id = "errorMsg">leakllsfel as elf saf</p>
-                        <button type="button" class="btn btn-primary" onClick = "handleFormSubmit()">Go!</button>
+
+                        <p class = "text-danger fst-italic " id = "errorMsg"></p>
+                        <div class = "d-flex justify-content-center align-items-center ">
+                            <button type="button" class="btn btn-primary" onClick = "handleFormSubmit()">Go!</button>
+                        </div>
                   
                   </form>
 
                   <div class = "d-flex justify-content-center align-items-center pb-3 m-3">
                     <div class="card" style="width: 30rem;">
                         <div class="card-body text-center">
-                        <h5 class="card-title" id = "factOutputTitle"></h5>
-                        <p class="card-text" id = "factOutput"></p>
+                        <h6 class="card-title" id = "factOutput"></h6>
                         </div>
                     </div>
                     </div>
