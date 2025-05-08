@@ -62,7 +62,7 @@
                    </div>
 
                     <!-- form -->
-                   <form class = "border border-2 p-3 .visually-hidden px-5 mx-5">
+                   <form class = "border border-2 p-3 px-5 mx-5">
                         <h3 id = "Type" class = "text-center">Trivia</h3>
 
                         <div class="mb-3" id = "firstInput">
@@ -86,6 +86,10 @@
                     <div class="card" style="width: 30rem;">
                         <div class="card-body text-center">
                         <h6 class="card-title" id = "factOutput"></h6>
+                        <!-- favorite button hidden at first -->
+                        <button onClick = "handleFavorite()" class="btn btn-outline-secondary visually-hidden" id = "favBtn"> 
+                            <img src = "star.svg" class = "img-rounded" alt="Logo" width="20" height="20" />
+                        </button>
                         </div>
                     </div>
                     </div>

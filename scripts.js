@@ -129,6 +129,8 @@ async function handleFormSubmit(){
                     const result = await response.text();
                     console.log(result);
                     document.getElementById("factOutput").textContent = result;
+                    //show the favorite button
+                    document.getElementById("favBtn").setAttribute("class", "btn btn-outline-secondary");
                 } catch (error) {
                     console.error(error);
                 }
@@ -159,6 +161,7 @@ async function handleFormSubmit(){
                     const result = await response.text();
                     console.log(result);
                     document.getElementById("factOutput").textContent = result;
+                    document.getElementById("favBtn").setAttribute("class", "btn btn-outline-secondary");
                 } catch (error) {
                     console.error(error);
                 }
@@ -191,6 +194,7 @@ async function handleFormSubmit(){
                     const result = await response.text();
                     console.log(result);
                     document.getElementById("factOutput").textContent = result;
+                    document.getElementById("favBtn").setAttribute("class", "btn btn-outline-secondary");
                 } catch (error) {
                     console.error(error);
                 }
@@ -221,6 +225,7 @@ async function handleFormSubmit(){
                     const result = await response.text();
                     console.log(result);
                     document.getElementById("factOutput").textContent = result;
+                    document.getElementById("favBtn").setAttribute("class", "btn btn-outline-secondary");
                 } catch (error) {
                     console.error(error);
                 }
@@ -243,11 +248,52 @@ async function handleFormSubmit(){
                 const result = await response.text();
                 console.log(result);
                 document.getElementById("factOutput").textContent = result;
+                document.getElementById("favBtn").setAttribute("class", "btn btn-outline-secondary");
             } catch (error) {
                 console.error(error);
             }
             break;
     }
+
+
+}
+
+function handleFavorite(){
+    console.log("adding to Favorites.");
+    //need to store the information in localStorage
+    //stored as array of objects. [{ input: 42, type: trivia, fact: 42 is the answer to life, the universe, and everything}, { ...}]
+    let type = document.getElementById("Type").textContent;
+    let userInput1 = document.getElementById("Input1").value;
+    let userInput2 = document.getElementById("Input2").value;
+    let fact = document.getElementById("factOutput").textContent;
+    console.log("type ", type, "Input1 ", userInput1, "input2 ","fact: ", fact );
+
+    //if the type is a date we will combine the date and month into a single string.
+    let input;
+    if(type === "Date"){
+        input = userInput1+"/"+userInput2;
+    }
+    else{
+        input = userInput1;
+    }
+    //make the object to push into the array
+    const newFav = {
+        input: input,
+        type:type,
+        fact: fact
+    }
+    //get the favorites array of objects
+    let favorites = localStorage.getItem("favorites");
+    //if there is no favorites: [] then initialize it 
+    if(favorites){
+        favorites = JSON.parse(favorites);
+    }else{
+        favorites = [];
+    }
+    favorites.push(newFav);
+    console.log("favorites:", favorites);
+    //because the local storage only takes string inputs we have to stringify.
+    localStorage.setItem("favorites", JSON.stringify(favorites));
 
 
 }
