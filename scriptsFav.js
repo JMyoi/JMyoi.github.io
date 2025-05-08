@@ -50,3 +50,52 @@ function RemoveFavorite(i){
     loadFavorites();
 
 }
+
+function fiterFavorites(filterType){
+    const container = document.getElementById("favContainer");
+    container.innerHTML = "";//clear it
+
+    //get favorites array of objects form local storage
+    let favorites = localStorage.getItem("favorites");
+    if(!favorites){
+        container.innterHTML = "<p>You Currently Have no Favorites.</p>"
+        return;
+    }
+
+    favorites = JSON.parse(favorites);
+
+    //filter by the type using filter funciton passing in an arrow funciton.
+    const filteredFavs = favorites.filter(fav => fav.type === filterType);
+
+    if(filteredFavs.length ===0){
+        container.innerHTML = `<p>You currently have no ${filterType} facts.</p>`;
+        return;
+    }
+
+    for(let i = 0; i<filteredFavs.length; i++){
+        let currInput = filteredFavs[i].input;
+        let currType = filteredFavs[i].type;
+        let currFact = filteredFavs[i].fact;
+        //put it into a card 
+        const card = document.createElement("div");
+        card.className = "col-md-6 col-lg-4";
+        card.innerHTML = `
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">${i+1}. Type: ${currType}</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">Value: ${currInput}</h6>
+                      <p class="card-text">${currFact}</p>
+                      <button onClick = "RemoveFavorite(${i})" class="btn btn-outline-secondary " id = "DeleteBtn"> 
+                            <img src = "trash.svg" class = "img-rounded" alt="Logo" width="20" height="20" />
+                        </button>
+                    </div>
+                </div>
+        `;
+        container.appendChild(card);
+    }
+
+}
+
+
+
+

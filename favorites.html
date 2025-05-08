@@ -9,16 +9,12 @@
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid ">
+        <div class="container-fluid mx-5">
             <a class="navbar-brand  rounded-3 p-2" href="https://jmyoi.github.io/numsplorer">
                 <img src="numsplorerNoName.png" class = "img-rounded" alt="Logo" width="70" height="60" >
                  Numsplorer
               </a>
-          <div class="vr"></div>
-          <a class="navbar-brand  rounded-3 p-2" href="https://jmyoi.github.io/HundredFacts">
-            <img src="battery-full.svg" class = "img-rounded" alt="Logo" width="70" height="70" >
-            100 Facts
-          </a>
+          
           <div class="vr"></div>
           <a class="navbar-brand  rounded-3 p-2" href="https://jmyoi.github.io/favorites">
             <img src="stars.svg" class = "img-rounded" alt="Logo" width="70" height="70" >
@@ -35,12 +31,15 @@
             <div class = "d-flex justify-content-center align-items-center pb-3 row g-3">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown button
+                      Filter By
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item" onClick = "fiterFavorites('Trivia')">Trivia</a></li>
+                      <li><a class="dropdown-item" onClick = "fiterFavorites('Math')">Math</a></li>
+                      <li><a class="dropdown-item" onClick = "fiterFavorites('Date')">Date</a></li>
+                      <li><a class="dropdown-item" onClick = "fiterFavorites('Year')">Year</a></li>
+                      <li><a class="dropdown-item" onClick = "fiterFavorites('Random')">Random</a></li>
+                      <li><a class="dropdown-item" onClick = "loadFavorites()">None</a></li>
                     </ul>
                   </div>
             </div>

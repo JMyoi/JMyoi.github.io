@@ -94,7 +94,7 @@ function handleRandom(){
 }
 
 async function handleFormSubmit(){
-
+    document.getElementById("starIcon").setAttribute("src", "star.svg");
     let type = document.getElementById("Type");
     console.log(type.textContent);
     let errorMessage = document.getElementById("errorMsg");
@@ -295,5 +295,6 @@ function handleFavorite(){
     //because the local storage only takes string inputs we have to stringify.
     localStorage.setItem("favorites", JSON.stringify(favorites));
 
+    document.getElementById("starIcon").setAttribute("src", "star-fill.svg");
 
 }
