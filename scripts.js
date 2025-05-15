@@ -25,11 +25,11 @@ function handleTrivia(){
     let errorMessage = document.getElementById("errorMsg");
     errorMessage.textContent = "";
     //button color
-    document.getElementById("triviaBtn").setAttribute("class", "btn btn-secondary btn-lg mx-2");
-    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
+    document.getElementById("triviaBtn").setAttribute("class", "btn btn-secondary btn-lg m-2");
+    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg m-2");
     //change text
     document.getElementById("Type").textContent = "Trivia";
     //show input 1
@@ -42,11 +42,11 @@ function handleTrivia(){
 function handleMath(){
     let errorMessage = document.getElementById("errorMsg");
     errorMessage.textContent = "";
-    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("mathBtn").setAttribute("class", "btn btn-secondary btn-lg mx-2");
-    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
+    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("mathBtn").setAttribute("class", "btn btn-secondary btn-lg m-2");
+    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg m-2");
     document.getElementById("Type").textContent = "Math";
     document.getElementById("firstInput").setAttribute("class", "mb-3");
     document.getElementById("input1Text").textContent = "Input";
@@ -55,11 +55,11 @@ function handleMath(){
 function handleDate(){
     let errorMessage = document.getElementById("errorMsg");
     errorMessage.textContent = "";
-    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("dateBtn").setAttribute("class", "btn btn-secondary btn-lg mx-2");
-    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
+    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("dateBtn").setAttribute("class", "btn btn-secondary btn-lg m-2");
+    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg m-2");
     document.getElementById("Type").textContent = "Date";
     //both inputs should be shown because we input a month/day
     document.getElementById("firstInput").setAttribute("class", "mb-3");
@@ -69,11 +69,11 @@ function handleDate(){
 function handleYear(){
     let errorMessage = document.getElementById("errorMsg");
     errorMessage.textContent = "";
-    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("yearBtn").setAttribute("class", "btn btn-secondary btn-lg mx-2");
-    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
+    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("yearBtn").setAttribute("class", "btn btn-secondary btn-lg m-2");
+    document.getElementById("randomBtn").setAttribute("class", "btn btn-light btn-lg m-2");
     document.getElementById("Type").textContent = "Year";
     document.getElementById("firstInput").setAttribute("class", "mb-3");
     document.getElementById("input1Text").textContent = "Input";
@@ -82,11 +82,11 @@ function handleYear(){
 function handleRandom(){
     let errorMessage = document.getElementById("errorMsg");
     errorMessage.textContent = "";
-    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg mx-2");
-    document.getElementById("randomBtn").setAttribute("class", "btn btn-secondary btn-lg mx-2");
+    document.getElementById("triviaBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("mathBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("dateBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("yearBtn").setAttribute("class", "btn btn-light btn-lg m-2");
+    document.getElementById("randomBtn").setAttribute("class", "btn btn-secondary btn-lg m-2");
     document.getElementById("Type").textContent = "Random";
     document.getElementById("firstInput").setAttribute("class", "mb-3 visually-hidden");
     document.getElementById("secondInput").setAttribute("class", "mb-3 visually-hidden");

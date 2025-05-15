@@ -14,7 +14,7 @@
                     <img src="numsplorerNoName.png" class = "img-rounded" alt="Logo" width="70" height="60" >
                      Numsplorer
                   </a>
-              <div class="vr"></div>
+              <!-- <div class="vr"></div> -->
               <a class="navbar-brand  rounded-3 p-2" href="https://jmyoi.github.io/favorites">
                 <img src="stars.svg" class = "img-rounded" alt="Logo" width="70" height="70" >
                 Favorites
@@ -48,16 +48,30 @@
     
                
                 <div class="p-5 mb-4 bg-body-secondary rounded-3 border">
-                   <div class="d-flex justify-content-center align-items-center py-3 mx-5 px-4">
-                    <button type="button" class="btn btn-secondary btn-lg mx-2" id = "triviaBtn" onClick = "handleTrivia()">Trivia</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2" id = "mathBtn" onClick = "handleMath()">Math</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2" id = "dateBtn" onClick = "handleDate()">Date</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2" id = "yearBtn" onClick = "handleYear()">Year</button>
-                    <button type="button" class="btn btn-light btn-lg mx-2" id = "randomBtn" onClick = "handleRandom()">Random</button>
+
+                    <div class="container text-center  align-items-center py-3 mx-3 px-4">
+                        <div class = "row">
+                            <div class = "col">
+                                <button type="button" class="btn btn-secondary btn-lg m-2" id = "triviaBtn" onClick = "handleTrivia()">Trivia</button>
+                            </div>
+                            <div class = "col">
+                             <button type="button" class="btn btn-light btn-lg m-2" id = "mathBtn" onClick = "handleMath()">Math</button>
+                            </div>
+                            <div class = "col">
+                                <button type="button" class="btn btn-light btn-lg m-2" id = "dateBtn" onClick = "handleDate()">Date</button>
+                            </div>
+                            <div class = "col">
+                                <button type="button" class="btn btn-light btn-lg m-2" id = "yearBtn" onClick = "handleYear()">Year</button>
+                            </div>
+                            <div class = "col">
+                                <button type="button" class="btn btn-light btn-lg m-2" id = "randomBtn" onClick = "handleRandom()">Random</button>
+                            </div>
+
+                        </div>
                    </div>
 
                     <!-- form -->
-                   <form class = "border border-2 p-3 px-5 mx-5">
+                   <form class = "border border-2 p-3 px-5 ">
                         <h3 id = "Type" class = "text-center">Trivia</h3>
 
                         <div class="mb-3" id = "firstInput">
@@ -74,7 +88,6 @@
                         <div class = "d-flex justify-content-center align-items-center ">
                             <button type="button" class="btn btn-primary" onClick = "handleFormSubmit()">Go!</button>
                         </div>
-                  
                   </form>
 
                   <div class = "d-flex justify-content-center align-items-center pb-3 m-3">
