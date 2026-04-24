@@ -64,7 +64,7 @@ function fiterFavorites(filterType){
 
     favorites = JSON.parse(favorites);
 
-    //filter by the type using filter funciton passing in an arrow funciton.
+    //filter by the type using filter funciton passing in an arrow funciton
     const filteredFavs = favorites.filter(fav => fav.type === filterType);
 
     if(filteredFavs.length ===0){
