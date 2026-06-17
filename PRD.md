@@ -1,7 +1,7 @@
 # Product Requirements Document — Personal Site
 
 ## Overview
-Personal portfolio site for Jay Chen, built from scratch as a learning project. Deployed on GitHub Pages.
+Personal portfolio site for Jay Chen
 
 ---
 
@@ -52,6 +52,9 @@ Personal portfolio site for Jay Chen, built from scratch as a learning project. 
   - CSI — Master's
   - My Lua *(role/context TBD)*
   - NYC TTP *(role/context TBD)*
+  -Code Path Courses, AI 101, TIP102, AI 201, WEB 102
+
+Reference @resume.md in assets folder for more info
 
 ### 4. Projects Section
 - Each project is clickable and opens a dedicated page
@@ -70,7 +73,7 @@ Personal portfolio site for Jay Chen, built from scratch as a learning project. 
 - May include languages, frameworks, tools
 
 ### 6. Footer
-- TBD content
+- General Footer OCntent
 
 ---
 
