@@ -60,14 +60,13 @@ Reference @resume.md in assets folder for more info
 - Each project is clickable and opens a dedicated page
 - Page-flip transition on click
 - Projects:
+  - Budget Flow
+  - Battleship
+  - Jay's C++ DSA Library
   - Chit Chat
   - LMS
   - Sorting Algorithm Analysis
-  - Jay's C++ DSA Library
   - P vs NP
-  - Battleship
-  - J*b Finder
-  - Cash Flow
 
 ### 5. Skills Section *(optional / TBD)*
 - May include languages, frameworks, tools

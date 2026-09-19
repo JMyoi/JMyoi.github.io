@@ -1,0 +1,263 @@
+/* Paperdoodle design system — tokens and paper utilities.
+   Ported from the Claude Design project (paperdoodle-design-system). */
+
+/* Fonts (Permanent Marker, Caveat, Architects Daughter) are loaded from
+   Google Fonts by a <link> in index.html. */
+
+:root {
+  /* --- Paper (surfaces) --- */
+  --paper-50: #fdfbf3;
+  --paper-100: #f8f2e2;
+  --paper-200: #f0e7d1;
+  --paper-300: #e4d6b6;
+  --paper-400: #d2bc93;
+  --paper-500: #b79c72;
+
+  /* --- Ink (text + strokes) --- */
+  --ink-900: #1f1c18;
+  --ink-700: #3b342b;
+  --ink-500: #6c6253;
+  --ink-300: #9c907b;
+  --ink-200: #c3b79f;
+
+  /* --- Pens & highlighters (accents) --- */
+  --pen-blue: #2e5c8a;
+  --pen-red: #b8382c;
+  --pen-green: #3f7a4e;
+  --marker-yellow: #f2c14e;
+  --hl-yellow: #fbe79b;
+  --hl-mint: #bfe3ce;
+  --hl-pink: #f6c6c0;
+  --sticky: #f7de8a;
+
+  /* --- Semantic aliases --- */
+  --surface-page: var(--paper-100);
+  --surface-card: var(--paper-50);
+  --surface-raised: #fffdf7;
+  --surface-kraft: var(--paper-400);
+  --surface-sticky: var(--sticky);
+
+  --text-heading: var(--ink-900);
+  --text-body: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-faint: var(--ink-300);
+  --text-invert: var(--paper-50);
+  --text-link: var(--pen-blue);
+  --text-link-hover: var(--pen-red);
+
+  --stroke-strong: var(--ink-900);
+  --stroke-default: var(--ink-700);
+  --stroke-soft: var(--ink-300);
+  --rule-line: #c9d8e8;
+  --rule-margin: #e3a9a2;
+
+  --accent: var(--pen-blue);
+  --accent-warm: var(--pen-red);
+  --annotate: var(--pen-red);
+  --highlight: var(--hl-yellow);
+  --focus-ring: var(--pen-blue);
+
+  /* --- Typography --- */
+  --font-display: "Permanent Marker", "Comic Sans MS", cursive;
+  --font-body: "Caveat", "Segoe Script", cursive;
+  --font-label: "Architects Daughter", "Comic Sans MS", cursive;
+  --font-mono: "Architects Daughter", ui-monospace, monospace;
+
+  --size-hero: clamp(56px, 9vw, 116px);
+  --lh-hero: 0.92;
+  --size-h1: clamp(40px, 5vw, 64px);
+  --size-h2: clamp(30px, 4vw, 40px);
+  --size-h3: 28px;
+  --size-h4: 22px;
+  --lh-heading: 1.1;
+  --track-heading: 0.01em;
+
+  --size-body-xl: clamp(22px, 2.4vw, 26px);
+  --size-body-lg: 22px;
+  --size-body: 20px;
+  --size-body-sm: 18px;
+  --lh-body: 1.45;
+  --weight-body: 400;
+  --weight-body-strong: 600;
+
+  --size-label-lg: 18px;
+  --size-label: 15px;
+  --size-label-sm: 13px;
+  --track-label: 0.14em;
+  --lh-label: 1.2;
+
+  /* --- Spacing: 4px base, vertical rhythm on the 32px ruling --- */
+  --sp-0: 0px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  --rule-height: 32px;
+  --section-y: var(--sp-9);
+  --card-pad: var(--sp-5);
+  --gutter: var(--sp-6);
+  --page-margin-left: 88px;
+  --margin-rule-x: 72px;
+  --container: 1120px;
+  --container-narrow: 720px;
+
+  /* --- Effects: hand-drawn geometry --- */
+  --sketch-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  --sketch-radius-alt: 15px 225px 15px 255px/225px 15px 255px 15px;
+  --sketch-radius-tight: 24px 6px 20px 8px/8px 18px 6px 22px;
+  --radius-pill: 999px;
+
+  --stroke-w: 2.5px;
+  --stroke-w-bold: 4px;
+  --stroke-w-hair: 1.5px;
+
+  /* shadows are "paper lifted off paper" — warm, offset, no blur halo */
+  --shadow-lift: 3px 4px 0 rgba(31, 28, 24, 0.18);
+  --shadow-lift-lg: 6px 8px 0 rgba(31, 28, 24, 0.2);
+  --shadow-press: 1px 1px 0 rgba(31, 28, 24, 0.22);
+  --shadow-page: 0 18px 36px -18px rgba(31, 28, 24, 0.35);
+
+  --tilt-a: -0.8deg;
+  --tilt-b: 0.7deg;
+  --tilt-c: -1.6deg;
+
+  --ease-pen: cubic-bezier(0.22, 0.9, 0.24, 1);
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 520ms;
+  --dur-draw: 900ms;
+
+  --grain-opacity: 0.34;
+
+  /* page padding shrinks on narrow screens */
+  --page-x: clamp(20px, 5vw, 48px);
+}
+
+/* --- paper surfaces ------------------------------------------------------ */
+.pd-paper {
+  background-color: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+}
+
+/* grain overlay — fractal-noise texture, no image assets */
+.pd-grain {
+  position: relative;
+}
+.pd-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+.pd-grain > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ruled notebook page */
+.pd-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--rule-height) - 1px),
+    var(--rule-line) calc(var(--rule-height) - 1px),
+    var(--rule-line) var(--rule-height)
+  );
+}
+/* graph / dot grid */
+.pd-grid {
+  background-image: linear-gradient(var(--ink-200) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink-200) 1px, transparent 1px);
+  background-size: var(--rule-height) var(--rule-height);
+}
+
+.pd-label {
+  font-family: var(--font-label);
+  font-size: var(--size-label);
+  letter-spacing: var(--track-label);
+  line-height: var(--lh-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.pd-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
+}
+
+/* footer links draw a red pen underline on hover */
+.pd-footer-link {
+  border-bottom: 3px solid transparent;
+}
+.pd-footer-link:hover {
+  border-bottom-color: var(--pen-red);
+}
+
+/* nav links warm up on hover */
+.pd-nav-link:hover {
+  color: var(--pen-red);
+}
+
+a {
+  color: var(--text-link);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--text-link-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+@keyframes pd-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pd-wiggle {
+  0%,
+  100% {
+    transform: rotate(-0.6deg);
+  }
+  50% {
+    transform: rotate(0.8deg);
+  }
+}
+@keyframes pd-caret {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
