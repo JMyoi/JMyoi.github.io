@@ -1,0 +1,7 @@
+# Local notes and agent instructions — kept off GitHub
+CLAUDE.md
+
+# Environment files — may hold secrets
+.env
+.env.*
+!.env.example
