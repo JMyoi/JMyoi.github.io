@@ -15,6 +15,7 @@ import {
   projects,
   skillGroups,
   timeline,
+  type Note,
 } from './data/portfolio'
 import { prefersReducedMotion, useTypewriter, useWordCycle } from './hooks/usePaper'
 
@@ -23,6 +24,27 @@ const TILT = 1.5 /* site-wide tilt amount, the design's tiltAmount default */
 const CERTS_SLUG = 'certifications'
 
 type Flip = 'out' | 'in' | null
+
+/* one bullet of a project's notes; sub-notes nest as a tighter list */
+function NoteItem({ note, gap }: { note: Note; gap: string }) {
+  if (typeof note === 'string') {
+    return <li style={{ marginBottom: gap }}>{note}</li>
+  }
+  return (
+    <li style={{ marginBottom: gap }}>
+      {note.label && <strong>{note.label}</strong>}
+      {note.label && note.text && ' — '}
+      {note.text}
+      {note.items && (
+        <ul style={{ margin: '6px 0 0', paddingLeft: 24 }}>
+          {note.items.map((sub, i) => (
+            <NoteItem key={i} note={sub} gap="6px" />
+          ))}
+        </ul>
+      )}
+    </li>
+  )
+}
 
 /* slugs that address a page of their own, rather than a section anchor */
 const pageSlugs = new Set<string>([
@@ -41,7 +63,20 @@ export default function App() {
   )
   const [flip, setFlip] = useState<Flip>(null)
   const [hovered, setHovered] = useState<string | null>(null)
+  const [emailCopied, setEmailCopied] = useState(false)
   const timers = useRef<number[]>([])
+
+  // mailto: silently does nothing when no mail app is configured,
+  // so also copy the address to the clipboard as a fallback.
+  const copyEmail = useCallback(() => {
+    navigator.clipboard
+      ?.writeText(contact.email)
+      .then(() => {
+        setEmailCopied(true)
+        window.setTimeout(() => setEmailCopied(false), 2000)
+      })
+      .catch(() => {})
+  }, [])
 
   const typedName = useTypewriter(NAME)
   const footerNote = `Currently ${useWordCycle(footerWords)}`
@@ -500,18 +535,23 @@ export default function App() {
                         flexWrap: 'wrap',
                       }}
                     >
-                      <Button variant="pen" href={contact.linkedin} external>
-                        LinkedIn
+                      <Button
+                        variant="marker"
+                        size="lg"
+                        href={contact.linkedin}
+                        external
+                      >
+                        LinkedIn →
                       </Button>
                       <Button variant="pen" href={contact.github} external>
                         GitHub
                       </Button>
                       <Button
-                        variant="marker"
-                        size="lg"
+                        variant="pen"
                         href={`mailto:${contact.email}`}
+                        onClick={copyEmail}
                       >
-                        Email me →
+                        {emailCopied ? 'Email copied ✓' : 'Email me'}
                       </Button>
                     </div>
                     <p className="pd-label" style={{ margin: '24px 0 0' }}>
@@ -575,7 +615,7 @@ export default function App() {
                       <div style={{ position: 'relative', width: '100%', height: 240 }}>
                         {c.image ? (
                           <img
-                            src={`${import.meta.env.BASE_URL}certs/${c.image}`}
+                            src={c.image}
                             alt={`${c.code} — ${c.title} certificate`}
                             style={{
                               width: '100%',
@@ -638,7 +678,7 @@ export default function App() {
                   {current.title}
                 </h1>
                 <p style={{ margin: '16px 0 0', fontSize: 'var(--size-body-xl)' }}>
-                  {current.blurb}
+                  {current.description ?? current.blurb}
                 </p>
                 <div
                   style={{
@@ -657,7 +697,57 @@ export default function App() {
                     )
                   })}
                 </div>
-                {current.repo && (
+                {current.video && (
+                  <figure
+                    style={{
+                      margin: '32px 0 0',
+                      background: 'var(--surface-card)',
+                      border: 'var(--stroke-w) solid var(--stroke-default)',
+                      borderRadius: 'var(--sketch-radius)',
+                      padding: 12,
+                      boxShadow: 'var(--shadow-lift)',
+                    }}
+                  >
+                    <iframe
+                      src={current.video.src}
+                      title={current.video.title}
+                      allow="fullscreen; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        aspectRatio: '16 / 9',
+                        border: 0,
+                        borderRadius: 'var(--sketch-radius)',
+                      }}
+                    />
+                  </figure>
+                )}
+                {current.image && (
+                  <figure
+                    style={{
+                      margin: '32px 0 0',
+                      background: 'var(--surface-card)',
+                      border: 'var(--stroke-w) solid var(--stroke-default)',
+                      borderRadius: 'var(--sketch-radius)',
+                      padding: 12,
+                      boxShadow: 'var(--shadow-lift)',
+                    }}
+                  >
+                    <img
+                      src={current.image.src}
+                      alt={current.image.alt}
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: 'var(--sketch-radius)',
+                      }}
+                    />
+                  </figure>
+                )}
+                {(current.repo || current.documents) && (
                   <div
                     style={{
                       margin: '40px 0 20px',
@@ -666,32 +756,122 @@ export default function App() {
                       flexWrap: 'wrap',
                     }}
                   >
-                    <Button variant="pen" href={current.repo} external>
-                      View source
-                    </Button>
+                    {current.repo && (
+                      <Button variant="pen" href={current.repo} external>
+                        View source
+                      </Button>
+                    )}
+                    {current.documents?.map((d) => (
+                      <Button
+                        key={d.file}
+                        variant="pen"
+                        href={`${import.meta.env.BASE_URL}docs/${d.file}`}
+                        external
+                      >
+                        {d.label}
+                      </Button>
+                    ))}
                   </div>
                 )}
-                <h2
-                  className="pd-heading"
-                  style={{ margin: '40px 0 20px', fontSize: 'var(--size-h2)' }}
-                >
-                  How it works
-                </h2>
-                <ul
-                  style={{
-                    margin: 0,
-                    paddingLeft: 24,
-                    maxWidth: '58ch',
-                    fontSize: 'var(--size-body-lg)',
-                    lineHeight: '32px',
-                  }}
-                >
-                  {current.notes.map((n) => (
-                    <li key={n} style={{ marginBottom: 'var(--sp-4)' }}>
-                      {n}
-                    </li>
-                  ))}
-                </ul>
+                {[
+                  {
+                    heading: current.notesHeading ?? 'How it works',
+                    notes: current.notes,
+                  },
+                  ...(current.moreNotes ?? []),
+                ].map((section) => (
+                  <section key={section.heading}>
+                    <h2
+                      className="pd-heading"
+                      style={{ margin: '40px 0 20px', fontSize: 'var(--size-h2)' }}
+                    >
+                      {section.heading}
+                    </h2>
+                    <ul
+                      style={{
+                        margin: 0,
+                        paddingLeft: 24,
+                        maxWidth: '58ch',
+                        fontSize: 'var(--size-body-lg)',
+                        lineHeight: '32px',
+                      }}
+                    >
+                      {section.notes.map((n, i) => (
+                        <NoteItem key={i} note={n} gap="var(--sp-4)" />
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+                {current.gallery?.map((section) => (
+                  <section key={section.heading}>
+                    <h2
+                      className="pd-heading"
+                      style={{ margin: '40px 0 16px', fontSize: 'var(--size-h2)' }}
+                    >
+                      {section.heading}
+                    </h2>
+                    <p
+                      style={{
+                        margin: 0,
+                        maxWidth: '58ch',
+                        fontSize: 'var(--size-body-lg)',
+                        lineHeight: '32px',
+                      }}
+                    >
+                      {section.description}
+                    </p>
+                    {/* breaks out of the 840px text column so screenshots stay
+                        legible; the 24px slack keeps a classic scrollbar from
+                        causing horizontal scroll */}
+                    <div
+                      style={{
+                        marginTop: 'var(--sp-6)',
+                        width:
+                          'max(100%, min(1200px, calc(100vw - 2 * var(--page-x) - 24px)))',
+                        marginLeft: '50%',
+                        transform: 'translateX(-50%)',
+                        display: 'grid',
+                        gridTemplateColumns:
+                          'repeat(auto-fill,minmax(min(300px,100%),1fr))',
+                        gap: 'var(--sp-5)',
+                      }}
+                    >
+                      {section.images.map((img) => (
+                        <figure
+                          key={img.src}
+                          style={{
+                            margin: 0,
+                            background: 'var(--surface-card)',
+                            border: 'var(--stroke-w) solid var(--stroke-default)',
+                            borderRadius: 'var(--sketch-radius)',
+                            padding: 10,
+                            boxShadow: 'var(--shadow-lift)',
+                          }}
+                        >
+                          <a href={img.src} target="_blank" rel="noreferrer">
+                            <img
+                              src={img.src}
+                              alt={img.alt}
+                              loading="lazy"
+                              style={{
+                                display: 'block',
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: 'var(--sketch-radius)',
+                              }}
+                            />
+                          </a>
+                          <figcaption
+                            className="pd-label"
+                            style={{ marginTop: 10, fontSize: 'var(--size-label-sm)' }}
+                          >
+                            {img.caption}
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </section>
+                ))}
                 <div
                   style={{
                     marginTop: 'var(--sp-7)',
