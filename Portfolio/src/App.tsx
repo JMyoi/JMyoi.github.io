@@ -757,8 +757,13 @@ export default function App() {
                     }}
                   >
                     {current.repo && (
-                      <Button variant="pen" href={current.repo} external>
-                        View source
+                      <Button
+                        variant="marker"
+                        size="lg"
+                        href={current.repo}
+                        external
+                      >
+                        View source →
                       </Button>
                     )}
                     {current.documents?.map((d) => (
